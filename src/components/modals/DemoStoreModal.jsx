@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../../context/LanguageContext';
 import {
   X,
   Shirt,
@@ -16,6 +17,7 @@ import {
 import confetti from 'canvas-confetti';
 
 export const DemoStoreModal = ({ isOpen, onClose }) => {
+  const { lang, t } = useLanguage();
   const [selectedSize, setSelectedSize] = useState('M');
   const [aiFitResult, setAiFitResult] = useState(null);
   const [userHeight, setUserHeight] = useState('175');
@@ -35,7 +37,9 @@ export const DemoStoreModal = ({ isOpen, onClose }) => {
     setAiFitResult({
       size,
       confidence: '98.6%',
-      note: `Based on height ${h}cm & weight ${w}kg, Size ${size} matches your brand's Haute Couture fit parameters perfectly.`,
+      note: lang === 'VI'
+        ? `Dựa trên chiều cao ${h}cm & cân nặng ${w}kg, Size ${size} sẽ ôm dáng vừa vặn hoàn hảo chuẩn form Haute Couture.`
+        : `Based on height ${h}cm & weight ${w}kg, Size ${size} matches your brand's Haute Couture fit parameters perfectly.`,
     });
   };
 
@@ -50,98 +54,97 @@ export const DemoStoreModal = ({ isOpen, onClose }) => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-2xl">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-md">
         <motion.div
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.94 }}
-          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/20 bg-slate-950 p-6 md:p-8 shadow-2xl"
+          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 md:p-8 shadow-2xl"
         >
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 p-2 rounded-full bg-slate-900 border border-white/10 text-slate-400 hover:text-white transition-colors z-20"
+            className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 border border-slate-200 text-slate-500 hover:text-slate-900 transition-colors z-20"
           >
             <X className="w-5 h-5" />
           </button>
 
           {isOrdered ? (
             <div className="text-center py-16 space-y-6">
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-400">
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 border border-emerald-300 text-emerald-600">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
-              <h3 className="font-display text-3xl font-extrabold text-white">
-                Simulated Platform Checkout Completed!
+              <h3 className="font-display text-3xl font-extrabold text-slate-900">
+                {lang === 'VI' ? 'Thanh Toán Simulated Thành Công!' : 'Simulated Platform Checkout Completed!'}
               </h3>
-              <p className="text-sm text-slate-300 max-w-md mx-auto">
-                You just experienced Shopdy Engine's 1-step accelerated transaction pipeline. Processed in 0.45s with zero latency!
+              <p className="text-sm text-slate-600 max-w-md mx-auto font-medium">
+                {lang === 'VI'
+                  ? 'Bạn vừa trải nghiệm quy trình thanh toán 1-step siêu mượt của Shopdy Engine. Tốc độ xử lý chỉ 0.45 giây!'
+                  : 'You just experienced Shopdy Engine\'s 1-step accelerated transaction pipeline. Processed in 0.45s with zero latency!'}
               </p>
               <button
                 onClick={() => {
                   setIsOrdered(false);
                   onClose();
                 }}
-                className="px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-400 via-purple-600 to-rose-600 text-white font-bold text-xs shadow-lg"
+                className="px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-500 via-purple-600 to-rose-600 text-white font-bold text-xs shadow-lg"
               >
-                Return to Shopdy Platform Homepage
+                {lang === 'VI' ? 'Quay Lại Trang Chủ Shopdy' : 'Return to Shopdy Platform Homepage'}
               </button>
             </div>
           ) : (
             <div>
               {/* Header */}
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
                 <div className="flex items-center gap-3">
-                  <span className="font-display text-xl font-extrabold text-amber-300">
+                  <span className="font-display text-xl font-extrabold text-amber-700">
                     L'ÉROSE PARIS
                   </span>
-                  <span className="text-[10px] uppercase font-bold px-2.5 py-0.5 rounded bg-purple-950 border border-purple-800/40 text-purple-300">
+                  <span className="text-[10px] uppercase font-bold px-2.5 py-0.5 rounded bg-purple-100 border border-purple-300 text-purple-900">
                     Interactive Console Preview
                   </span>
                 </div>
-                <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+                <span className="text-xs font-semibold text-emerald-700 flex items-center gap-1">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
                   Shopdy AI Fit Engine Active
                 </span>
               </div>
 
               {/* Grid */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-                {/* Left */}
                 <div className="md:col-span-6">
-                  <div className="relative rounded-2xl overflow-hidden border border-white/10 h-96">
+                  <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-96">
                     <img
                       src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800"
                       alt="L'Érose Trench Coat"
                       className="h-full w-full object-cover"
                     />
-                    <div className="absolute top-4 left-4 rounded-full bg-black/70 px-3 py-1 text-xs font-bold text-amber-300 backdrop-blur-md">
+                    <div className="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-amber-800 backdrop-blur-md border border-slate-200">
                       ✦ Autumn 2026 Collection
                     </div>
                   </div>
                 </div>
 
-                {/* Right */}
                 <div className="md:col-span-6 space-y-6">
                   <div>
-                    <h3 className="text-2xl font-bold text-white">
+                    <h3 className="text-2xl font-bold text-slate-900">
                       L'Érose Silk Velvet Trench Coat
                     </h3>
                     <div className="mt-2 flex items-center justify-between">
-                      <span className="text-2xl font-extrabold text-amber-300 font-display">
+                      <span className="text-2xl font-extrabold text-amber-700 font-display">
                         $1,280 USD
                       </span>
-                      <div className="flex items-center gap-1 text-xs text-amber-400">
-                        <Star className="w-4 h-4 fill-amber-400" />
-                        <span className="font-bold text-white">4.9</span> (128 Reviews)
+                      <div className="flex items-center gap-1 text-xs text-amber-600">
+                        <Star className="w-4 h-4 fill-amber-500" />
+                        <span className="font-bold text-slate-900">4.9</span> (128 Reviews)
                       </div>
                     </div>
                   </div>
 
-                  {/* Size Selector & AI Calculator */}
-                  <div className="space-y-3 p-4 rounded-2xl border border-white/10 bg-slate-900/60">
+                  <div className="space-y-3 p-4 rounded-2xl border border-slate-200 bg-slate-50">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="font-bold text-slate-300">Select Garment Size:</span>
-                      <span className="font-bold text-purple-300">Selected: Size {selectedSize}</span>
+                      <span className="font-bold text-slate-700">{lang === 'VI' ? 'Chọn Size Sản Phẩm:' : 'Select Garment Size:'}</span>
+                      <span className="font-bold text-purple-700">Size {selectedSize}</span>
                     </div>
 
                     <div className="flex gap-3">
@@ -151,8 +154,8 @@ export const DemoStoreModal = ({ isOpen, onClose }) => {
                           onClick={() => setSelectedSize(s)}
                           className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all border ${
                             selectedSize === s
-                              ? 'border-amber-400 bg-amber-950 text-amber-300 shadow-md'
-                              : 'border-slate-800 bg-slate-950 text-slate-400 hover:text-white'
+                              ? 'border-purple-400 bg-purple-100 text-purple-900 shadow-sm'
+                              : 'border-slate-300 bg-white text-slate-600'
                           }`}
                         >
                           Size {s}
@@ -160,10 +163,9 @@ export const DemoStoreModal = ({ isOpen, onClose }) => {
                       ))}
                     </div>
 
-                    {/* AI Calculator */}
-                    <div className="pt-2 border-t border-slate-800">
-                      <p className="text-[11px] font-bold text-amber-300 flex items-center gap-1.5 mb-2">
-                        <Sparkles className="w-3.5 h-3.5" /> AI Sizing Precision Calculator:
+                    <div className="pt-2 border-t border-slate-200">
+                      <p className="text-[11px] font-bold text-amber-800 flex items-center gap-1.5 mb-2">
+                        <Sparkles className="w-3.5 h-3.5" /> {lang === 'VI' ? 'Tính Toán Size AI Precision:' : 'AI Sizing Precision Calculator:'}
                       </p>
                       <form onSubmit={handleCalcAiSize} className="flex gap-2">
                         <input
@@ -171,20 +173,20 @@ export const DemoStoreModal = ({ isOpen, onClose }) => {
                           value={userHeight}
                           onChange={(e) => setUserHeight(e.target.value)}
                           placeholder="Height (cm)"
-                          className="w-1/2 px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white"
+                          className="w-1/2 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs text-slate-900"
                         />
                         <input
                           type="number"
                           value={userWeight}
                           onChange={(e) => setUserWeight(e.target.value)}
                           placeholder="Weight (kg)"
-                          className="w-1/2 px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white"
+                          className="w-1/2 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs text-slate-900"
                         />
                         <button
                           type="submit"
                           className="px-3 py-1.5 rounded-lg bg-purple-600 text-white font-bold text-xs hover:bg-purple-500 whitespace-nowrap"
                         >
-                          Calculate
+                          {lang === 'VI' ? 'Tính Size' : 'Calculate'}
                         </button>
                       </form>
 
@@ -192,24 +194,23 @@ export const DemoStoreModal = ({ isOpen, onClose }) => {
                         <motion.div
                           initial={{ opacity: 0, y: 6 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="mt-2 p-2.5 rounded-lg bg-purple-950/60 border border-purple-800/40 text-[11px] text-purple-200"
+                          className="mt-2 p-2.5 rounded-lg bg-purple-50 border border-purple-200 text-[11px] text-purple-900"
                         >
-                          <p className="font-bold text-amber-300">
-                            Recommended: Size {aiFitResult.size} ({aiFitResult.confidence})
+                          <p className="font-bold text-amber-800">
+                            {lang === 'VI' ? 'Khuyên dùng:' : 'Recommended:'} Size {aiFitResult.size} ({aiFitResult.confidence})
                           </p>
-                          <p className="mt-0.5 text-slate-300">{aiFitResult.note}</p>
+                          <p className="mt-0.5 text-slate-700">{aiFitResult.note}</p>
                         </motion.div>
                       )}
                     </div>
                   </div>
 
-                  {/* Simulated Action */}
                   <button
                     onClick={handleSimulateOrder}
-                    className="w-full py-4 rounded-2xl bg-gradient-to-r from-amber-400 via-purple-600 to-rose-600 text-white font-bold text-xs shadow-xl hover:brightness-110 transition-all flex items-center justify-center gap-2"
+                    className="w-full py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-purple-600 to-rose-600 text-white font-bold text-xs shadow-xl hover:brightness-110 transition-all flex items-center justify-center gap-2"
                   >
                     <BarChart3 className="w-4 h-4" />
-                    Simulate 1-Step Platform Checkout (0.45s Speed)
+                    {lang === 'VI' ? 'Thanh Toán Simulated (0.45s Speed)' : 'Simulate 1-Step Platform Checkout (0.45s Speed)'}
                   </button>
                 </div>
               </div>

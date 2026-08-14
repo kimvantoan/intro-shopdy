@@ -27,8 +27,9 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
-        display: ['Syne', 'Plus Jakarta Sans', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'Outfit', 'sans-serif'],
+        display: ['Outfit', 'Plus Jakarta Sans', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {
         'shimmer': 'shimmer 3s infinite linear',
