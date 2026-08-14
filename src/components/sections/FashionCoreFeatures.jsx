@@ -1,136 +1,271 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
 import { SpotlightCard } from '../react-bits/SpotlightCard';
+import { ScrollReveal } from '../react-bits/ScrollReveal';
 import {
-  Shirt,
-  Sparkles,
-  Zap,
+  LayoutDashboard,
+  ShoppingBag,
+  Package,
   Globe,
-  Layers,
-  ShieldCheck,
-  Smartphone,
+  Tag,
+  Image,
+  Users,
+  TrendingUp,
   Video,
-  BarChart3,
-  Flame,
-  QrCode,
-  Box
+  Mail,
+  RefreshCw,
+  Settings,
+  CreditCard,
+  Sparkles,
+  CheckCircle2,
+  ChevronRight
 } from 'lucide-react';
 
 export const FashionCoreFeatures = () => {
   const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState('ALL');
 
-  const features = [
+  const allFeatures = [
+    // --- 1. MANAGEMENT ---
     {
-      icon: Shirt,
-      title: t.feat_1_title,
-      tag: t.feat_1_tag,
-      description: t.feat_1_desc,
+      category: 'MANAGEMENT',
+      icon: LayoutDashboard,
+      title: t.feat_dash_title,
+      tag: t.feat_dash_tag,
+      description: t.feat_dash_desc,
       spotlight: 'rgba(217, 119, 6, 0.12)',
       badgeColor: 'border-amber-300 text-amber-800 bg-amber-50',
     },
     {
-      icon: Video,
-      title: t.feat_2_title,
-      tag: t.feat_2_tag,
-      description: t.feat_2_desc,
+      category: 'MANAGEMENT',
+      icon: ShoppingBag,
+      title: t.feat_orders_title,
+      tag: t.feat_orders_tag,
+      description: t.feat_orders_desc,
       spotlight: 'rgba(147, 51, 234, 0.12)',
       badgeColor: 'border-purple-300 text-purple-800 bg-purple-50',
     },
     {
-      icon: Smartphone,
-      title: t.feat_3_title,
-      tag: t.feat_3_tag,
-      description: t.feat_3_desc,
-      spotlight: 'rgba(225, 29, 72, 0.12)',
-      badgeColor: 'border-rose-300 text-rose-800 bg-rose-50',
-    },
-    {
-      icon: Flame,
-      title: t.feat_4_title,
-      tag: t.feat_4_tag,
-      description: t.feat_4_desc,
-      spotlight: 'rgba(16, 185, 129, 0.12)',
-      badgeColor: 'border-emerald-300 text-emerald-800 bg-emerald-50',
-    },
-    {
-      icon: Layers,
-      title: t.feat_5_title,
-      tag: t.feat_5_tag,
-      description: t.feat_5_desc,
+      category: 'MANAGEMENT',
+      icon: Package,
+      title: t.feat_products_title,
+      tag: t.feat_products_tag,
+      description: t.feat_products_desc,
       spotlight: 'rgba(37, 99, 235, 0.12)',
       badgeColor: 'border-blue-300 text-blue-800 bg-blue-50',
     },
     {
-      icon: QrCode,
-      title: t.feat_6_title,
-      tag: t.feat_6_tag,
-      description: t.feat_6_desc,
-      spotlight: 'rgba(219, 39, 119, 0.12)',
-      badgeColor: 'border-pink-300 text-pink-800 bg-pink-50',
+      category: 'MANAGEMENT',
+      icon: Globe,
+      title: t.feat_stores_title,
+      tag: t.feat_stores_tag,
+      description: t.feat_stores_desc,
+      spotlight: 'rgba(16, 185, 129, 0.12)',
+      badgeColor: 'border-emerald-300 text-emerald-800 bg-emerald-50',
+    },
+    {
+      category: 'MANAGEMENT',
+      icon: Tag,
+      title: t.feat_discounts_title,
+      tag: t.feat_discounts_tag,
+      description: t.feat_discounts_desc,
+      spotlight: 'rgba(245, 158, 11, 0.12)',
+      badgeColor: 'border-amber-400 text-amber-900 bg-amber-50',
+    },
+    {
+      category: 'MANAGEMENT',
+      icon: Image,
+      title: t.feat_media_title,
+      tag: t.feat_media_tag,
+      description: t.feat_media_desc,
+      spotlight: 'rgba(168, 85, 247, 0.12)',
+      badgeColor: 'border-purple-400 text-purple-900 bg-purple-50',
+    },
+    {
+      category: 'MANAGEMENT',
+      icon: Users,
+      title: t.feat_team_title,
+      tag: t.feat_team_tag,
+      description: t.feat_team_desc,
+      spotlight: 'rgba(225, 29, 72, 0.12)',
+      badgeColor: 'border-rose-300 text-rose-800 bg-rose-50',
+    },
+
+    // --- 2. MARKETING ---
+    {
+      category: 'MARKETING',
+      icon: TrendingUp,
+      title: t.feat_ads_title,
+      tag: t.feat_ads_tag,
+      description: t.feat_ads_desc,
+      spotlight: 'rgba(234, 88, 12, 0.12)',
+      badgeColor: 'border-orange-300 text-orange-800 bg-orange-50',
+    },
+    {
+      category: 'MARKETING',
+      icon: Video,
+      title: t.feat_creatives_title,
+      tag: t.feat_creatives_tag,
+      description: t.feat_creatives_desc,
+      spotlight: 'rgba(147, 51, 234, 0.12)',
+      badgeColor: 'border-purple-300 text-purple-800 bg-purple-50',
+    },
+    {
+      category: 'MARKETING',
+      icon: Mail,
+      title: t.feat_email_title,
+      tag: t.feat_email_tag,
+      description: t.feat_email_desc,
+      spotlight: 'rgba(37, 99, 235, 0.12)',
+      badgeColor: 'border-blue-300 text-blue-800 bg-blue-50',
+    },
+    {
+      category: 'MARKETING',
+      icon: RefreshCw,
+      title: t.feat_sync_title,
+      tag: t.feat_sync_tag,
+      description: t.feat_sync_desc,
+      spotlight: 'rgba(16, 185, 129, 0.12)',
+      badgeColor: 'border-emerald-300 text-emerald-800 bg-emerald-50',
+    },
+
+    // --- 3. SYSTEM MANAGER ---
+    {
+      category: 'SYSTEM',
+      icon: Settings,
+      title: t.feat_settings_title,
+      tag: t.feat_settings_tag,
+      description: t.feat_settings_desc,
+      spotlight: 'rgba(107, 114, 128, 0.12)',
+      badgeColor: 'border-slate-300 text-slate-800 bg-slate-100',
+    },
+    {
+      category: 'SYSTEM',
+      icon: CreditCard,
+      title: t.feat_payment_title,
+      tag: t.feat_payment_tag,
+      description: t.feat_payment_desc,
+      spotlight: 'rgba(16, 185, 129, 0.12)',
+      badgeColor: 'border-emerald-300 text-emerald-800 bg-emerald-50',
     },
   ];
+
+  const filteredFeatures = activeCategory === 'ALL'
+    ? allFeatures
+    : allFeatures.filter((f) => f.category === activeCategory);
 
   return (
     <section id="features" className="relative py-28 overflow-hidden bg-slate-50/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-400/40 bg-amber-50 text-xs font-bold text-amber-800 mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-            {t.features_badge}
+        {/* Section Header with ScrollReveal */}
+        <ScrollReveal direction="up" duration={0.6}>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-400/40 bg-amber-50 text-xs font-bold text-amber-800 mb-4">
+              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+              {t.features_badge}
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              {t.features_title} <span className="gold-shiny-text">{t.features_title_highlight}</span>
+            </h2>
+            <p className="mt-4 text-slate-600 text-base sm:text-lg font-medium">
+              {t.features_sub}
+            </p>
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            {t.features_title} <span className="gold-shiny-text">{t.features_title_highlight}</span>
-          </h2>
-          <p className="mt-4 text-slate-600 text-base sm:text-lg font-medium">
-            {t.features_sub}
-          </p>
-        </div>
+        </ScrollReveal>
 
-        {/* Feature Grid with Scroll Animation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, idx) => {
-            const Icon = feature.icon;
-            return (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+        {/* Category Filter Tabs */}
+        <ScrollReveal direction="zoom" delay={0.2} duration={0.5}>
+          <div className="flex justify-center mb-12">
+            <div className="inline-flex p-1.5 rounded-full border border-slate-200 bg-white shadow-md backdrop-blur-xl gap-1">
+              <button
+                onClick={() => setActiveCategory('ALL')}
+                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
+                  activeCategory === 'ALL'
+                    ? 'bg-gradient-to-r from-purple-600 to-amber-600 text-white shadow-md'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
               >
-                <SpotlightCard
-                  spotlightColor={feature.spotlight}
-                  className="h-full flex flex-col justify-between shadow-md hover:shadow-xl transition-all"
+                All System Modules (13)
+              </button>
+              <button
+                onClick={() => setActiveCategory('MANAGEMENT')}
+                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
+                  activeCategory === 'MANAGEMENT'
+                    ? 'bg-gradient-to-r from-purple-600 to-amber-600 text-white shadow-md'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                1. {t.cat_management}
+              </button>
+              <button
+                onClick={() => setActiveCategory('MARKETING')}
+                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
+                  activeCategory === 'MARKETING'
+                    ? 'bg-gradient-to-r from-purple-600 to-amber-600 text-white shadow-md'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                2. {t.cat_marketing}
+              </button>
+              <button
+                onClick={() => setActiveCategory('SYSTEM')}
+                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
+                  activeCategory === 'SYSTEM'
+                    ? 'bg-gradient-to-r from-purple-600 to-amber-600 text-white shadow-md'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                3. {t.cat_system}
+              </button>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* Feature Cards Grid with Staggered ScrollReveal */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence>
+            {filteredFeatures.map((feature, idx) => {
+              const Icon = feature.icon;
+              return (
+                <ScrollReveal
+                  key={feature.title}
+                  direction="up"
+                  delay={(idx % 3) * 0.15}
+                  duration={0.5}
                 >
-                  <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 shadow-inner">
-                        <Icon className="w-6 h-6 text-amber-700" />
+                  <SpotlightCard
+                    spotlightColor={feature.spotlight}
+                    className="h-full flex flex-col justify-between shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 shadow-inner">
+                          <Icon className="w-6 h-6 text-amber-700" />
+                        </div>
+                        <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${feature.badgeColor}`}>
+                          {feature.tag}
+                        </span>
                       </div>
-                      <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${feature.badgeColor}`}>
-                        {feature.tag}
-                      </span>
+
+                      <h3 className="text-xl font-bold text-slate-900 mb-3 hover:text-purple-700 transition-colors">
+                        {feature.title}
+                      </h3>
+
+                      <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                        {feature.description}
+                      </p>
                     </div>
 
-                    <h3 className="text-xl font-bold text-slate-900 mb-3 hover:text-purple-700 transition-colors">
-                      {feature.title}
-                    </h3>
-
-                    <p className="text-sm text-slate-600 leading-relaxed font-medium">
-                      {feature.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-slate-200/80 flex items-center text-xs font-bold text-purple-700 hover:text-purple-950 transition-colors">
-                    {t.features_explore}
-                  </div>
-                </SpotlightCard>
-              </motion.div>
-            );
-          })}
+                    <div className="mt-6 pt-4 border-t border-slate-200/80 flex items-center text-xs font-bold text-purple-700 hover:text-purple-950 transition-colors">
+                      {t.features_explore}
+                    </div>
+                  </SpotlightCard>
+                </ScrollReveal>
+              );
+            })}
+          </AnimatePresence>
         </div>
 
       </div>

@@ -20,31 +20,34 @@ import {
   ShieldCheck,
   Smartphone,
   Cpu,
-  BarChart3
+  BarChart3,
+  ShoppingBag,
+  Users,
+  CreditCard
 } from 'lucide-react';
 
 export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
   const { t } = useLanguage();
-  const [activeModule, setActiveModule] = useState('inventory');
+  const [activeModule, setActiveModule] = useState('dashboard');
 
   const modules = {
-    inventory: {
-      name: 'SKU Variant Matrix',
-      status: '12,450 Live SKUs Synced',
-      detail: 'Auto-syncs sizes, colors, and seasonal drops across all channels.',
-      tag: 'Omnichannel POS Active',
+    dashboard: {
+      name: 'Financial Dashboard',
+      status: '$128,450 Revenue',
+      detail: 'Real-time Net Profit, Order Volume, Conversion & Ad Spend ROAS.',
+      tag: 'Realtime Analytics',
     },
-    aisize: {
-      name: 'AI Fit Engine 3.0',
-      status: '98.4% Precision Fit',
-      detail: 'Cuts sizing return rates by 45% with algorithmic body parameter matching.',
-      tag: 'Return Saver Active',
+    team: {
+      name: 'Team & Staff KPI',
+      status: '14 Active Staff Members',
+      detail: 'Monitors individual sales contribution & role-based permissions.',
+      tag: 'Team Management',
     },
-    flashsale: {
-      name: 'Flash Sale Engine',
-      status: '500K Req/Min Capacity',
-      detail: 'Zero-downtime serverless architecture designed for limited drop hype.',
-      tag: 'Cloud Surge Shield',
+    ads: {
+      name: 'Ads & Marketing',
+      status: '13.6x Ad ROAS',
+      detail: 'Omnichannel campaign manager (Meta, Google, TikTok Ads & Email).',
+      tag: 'Marketing Suite',
     },
   };
 
@@ -134,7 +137,7 @@ export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
             </div>
           </div>
 
-          {/* Right Column */}
+          {/* Right Column: Shopdy Admin Control Tower */}
           <div className="lg:col-span-5 relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.92, y: 24 }}
@@ -241,21 +244,21 @@ export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
 
           <div className="text-center p-4 border-r border-slate-200/80 last:border-0">
             <p className="text-3xl sm:text-4xl font-extrabold text-amber-700 font-display">
-              <CountUp end={45} prefix="-" suffix="%" />
+              <CountUp end={32.8} decimals={1} prefix="+" suffix="%" />
             </p>
             <p className="mt-1 text-xs text-slate-600 font-semibold">{t.metric_return}</p>
           </div>
 
           <div className="text-center p-4 border-r border-slate-200/80 last:border-0">
             <p className="text-3xl sm:text-4xl font-extrabold text-purple-700 font-display">
-              <CountUp end={3.2} decimals={1} suffix="x" />
+              <CountUp end={13.6} decimals={1} suffix="x" />
             </p>
             <p className="mt-1 text-xs text-slate-600 font-semibold">{t.metric_conversion}</p>
           </div>
 
           <div className="text-center p-4">
             <p className="text-3xl sm:text-4xl font-extrabold text-emerald-700 font-display">
-              <CountUp end={500} suffix="K+" />
+              <CountUp end={150} suffix="K+" />
             </p>
             <p className="mt-1 text-xs text-slate-600 font-semibold">{t.metric_surge}</p>
           </div>

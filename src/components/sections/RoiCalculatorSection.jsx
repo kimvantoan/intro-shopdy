@@ -1,166 +1,167 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
-import { Calculator, Sparkles, TrendingUp, DollarSign, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { ScrollReveal } from '../react-bits/ScrollReveal';
+import { Sparkles, Calculator, TrendingUp, DollarSign, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { MagneticButton } from '../react-bits/MagneticButton';
 
 export const RoiCalculatorSection = ({ onOpenRegisterModal }) => {
   const { lang, t } = useLanguage();
-  const [monthlyOrders, setMonthlyOrders] = useState(2500);
-  const [avgOrderValue, setAvgOrderValue] = useState(85);
+  const [ordersPerMonth, setOrdersPerMonth] = useState(2500);
+  const [avgOrderValue, setAvgOrderValue] = useState(120);
 
-  const monthlyGMV = monthlyOrders * avgOrderValue;
-  const yearlyGMV = monthlyGMV * 12;
+  const calculateResults = () => {
+    const monthlyGMV = ordersPerMonth * avgOrderValue;
+    const annualGMV = monthlyGMV * 12;
+    const returnRateSaved = annualGMV * 0.055;
+    const conversionExtraRev = annualGMV * 0.142;
+    const totalBenefit = returnRateSaved + conversionExtraRev;
 
-  const monthlyReturnSaved = Math.round(monthlyOrders * 0.15 * 12);
-  const yearlyReturnSaved = monthlyReturnSaved * 12;
+    return {
+      annualGMV,
+      returnRateSaved,
+      conversionExtraRev,
+      totalBenefit,
+    };
+  };
 
-  const monthlyExtraRevenue = Math.round(monthlyGMV * 0.28);
-  const yearlyExtraRevenue = monthlyExtraRevenue * 12;
+  const results = calculateResults();
 
-  const totalYearlyBoost = yearlyReturnSaved + yearlyExtraRevenue;
-
-  const formatAmount = (amount) => {
+  const formatCurrency = (val) => {
     if (lang === 'VI') {
-      const amountVND = amount * 25000;
-      if (amountVND >= 1000000000) {
-        return (amountVND / 1000000000).toFixed(2) + ' Tỷ VNĐ';
-      }
-      return (amountVND / 1000000).toFixed(0) + ' Triệu VNĐ';
+      return (val * 25000).toLocaleString('vi-VN') + ' ₫';
     }
-    return '$' + amount.toLocaleString('en-US') + ' USD';
+    return '$' + val.toLocaleString('en-US') + ' USD';
   };
 
   return (
-    <section id="roi-calculator" className="relative py-28 border-t border-slate-200 bg-slate-50/50">
+    <section id="roi-calculator" className="relative py-28 overflow-hidden bg-slate-50/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Column */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-400/50 bg-emerald-50 text-xs font-bold text-emerald-800">
-              <Calculator className="w-3.5 h-3.5 text-emerald-600" />
+        {/* Header */}
+        <ScrollReveal direction="up" duration={0.6}>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-400/40 bg-amber-50 text-xs font-bold text-amber-800 mb-4">
+              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
               {t.roi_badge}
             </div>
-
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-slate-900">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900">
               {t.roi_title} <span className="gold-shiny-text">Shopdy OS</span>
             </h2>
-
-            <p className="text-slate-600 text-sm leading-relaxed font-medium">
+            <p className="mt-4 text-slate-600 text-sm sm:text-base font-medium">
               {t.roi_sub}
             </p>
-
-            {/* Slider 1 */}
-            <div className="p-6 rounded-2xl border border-slate-200 bg-white shadow-md space-y-4">
-              <div className="flex justify-between items-center">
-                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                  {t.roi_orders_label}
-                </label>
-                <span className="text-xl font-extrabold text-amber-700 font-display">
-                  {monthlyOrders.toLocaleString('en-US')} {lang === 'VI' ? 'đơn' : 'orders'} / mo
-                </span>
-              </div>
-              <input
-                type="range"
-                min={300}
-                max={25000}
-                step={100}
-                value={monthlyOrders}
-                onChange={(e) => setMonthlyOrders(Number(e.target.value))}
-                className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
-              />
-            </div>
-
-            {/* Slider 2 */}
-            <div className="p-6 rounded-2xl border border-slate-200 bg-white shadow-md space-y-4">
-              <div className="flex justify-between items-center">
-                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                  {t.roi_aov_label}
-                </label>
-                <span className="text-xl font-extrabold text-purple-700 font-display">
-                  {formatAmount(avgOrderValue)}
-                </span>
-              </div>
-              <input
-                type="range"
-                min={15}
-                max={350}
-                step={5}
-                value={avgOrderValue}
-                onChange={(e) => setAvgOrderValue(Number(e.target.value))}
-                className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
-              />
-            </div>
           </div>
+        </ScrollReveal>
 
-          {/* Right Column */}
-          <div className="lg:col-span-6">
-            <div className="relative overflow-hidden rounded-3xl border border-amber-400/40 bg-white p-8 shadow-2xl backdrop-blur-2xl">
-              
-              <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-                  {lang === 'VI' ? 'TỔNG NĂNG LỰC ĐÓNG GÓP DOANH THU' : 'TOTAL ANNUAL PLATFORM VALUE BOOST'}
-                </span>
-                <span className="text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-300 px-3 py-1 rounded-full">
-                  Verified ROI Model
-                </span>
+        {/* Interactive Calculator Box */}
+        <ScrollReveal direction="zoom" delay={0.2} duration={0.6}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xl">
+            
+            {/* Left Controls */}
+            <div className="lg:col-span-6 space-y-8 flex flex-col justify-between">
+              <div>
+                <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2 mb-6">
+                  <Calculator className="w-5 h-5 text-amber-600" />
+                  {lang === 'VI' ? 'Cấu Hình Quy Mô Cửa Hàng' : 'Input Store Operational Metrics'}
+                </h3>
+
+                {/* Slider 1: Monthly Orders */}
+                <div className="space-y-3 mb-8">
+                  <div className="flex justify-between items-center text-xs font-bold text-slate-700">
+                    <span>{t.roi_orders_label}</span>
+                    <span className="text-amber-700 font-extrabold text-sm font-mono">{ordersPerMonth.toLocaleString()} orders/mo</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="500"
+                    max="50000"
+                    step="500"
+                    value={ordersPerMonth}
+                    onChange={(e) => setOrdersPerMonth(Number(e.target.value))}
+                    className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                  />
+                  <div className="flex justify-between text-[10px] text-slate-400 font-semibold">
+                    <span>500 orders</span>
+                    <span>25,000 orders</span>
+                    <span>50,000+ orders</span>
+                  </div>
+                </div>
+
+                {/* Slider 2: AOV */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center text-xs font-bold text-slate-700">
+                    <span>{t.roi_aov_label}</span>
+                    <span className="text-amber-700 font-extrabold text-sm font-mono">{formatCurrency(avgOrderValue)}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="20"
+                    max="1000"
+                    step="10"
+                    value={avgOrderValue}
+                    onChange={(e) => setAvgOrderValue(Number(e.target.value))}
+                    className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                  />
+                  <div className="flex justify-between text-[10px] text-slate-400 font-semibold">
+                    <span>{formatCurrency(20)}</span>
+                    <span>{formatCurrency(500)}</span>
+                    <span>{formatCurrency(1000)}</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="mb-8">
-                <p className="text-xs font-semibold text-slate-600 mb-1">
+              <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 text-xs text-slate-700 space-y-1">
+                <p className="font-bold text-amber-900 flex items-center gap-1.5">
+                  <Zap className="w-4 h-4 text-amber-600" />
+                  {lang === 'VI' ? 'Mô hình tính toán chuẩn E-Commerce:' : 'E-Commerce Benchmark Model:'}
+                </p>
+                <p className="text-[11px] text-slate-600 font-medium">
+                  {lang === 'VI'
+                    ? 'Dựa trên dữ liệu thực tế từ hơn 1,200 cửa hàng: Tối ưu chi phí nhân sự, giảm hoàn đơn và tăng hiệu quả quảng cáo ROAS.'
+                    : 'Derived from aggregate metric data across 1,200+ connected merchant stores.'}
+                </p>
+              </div>
+            </div>
+
+            {/* Right Output Card */}
+            <div className="lg:col-span-6 rounded-2xl border border-purple-200 bg-gradient-to-b from-purple-50/80 to-white p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-wider text-purple-900 mb-2">
                   {t.roi_total_label}
                 </p>
-                <p className="font-display text-4xl sm:text-5xl font-extrabold text-amber-700 tracking-tight">
-                  + {formatAmount(totalYearlyBoost)}
-                </p>
-              </div>
 
-              <div className="space-y-4 border-t border-slate-200 pt-6">
-                <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 text-emerald-700">
-                      <ShieldCheck className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-900">{t.roi_return_saved}</p>
-                      <p className="text-[10px] text-slate-500 font-medium">45% reduction in size exchange returns</p>
-                    </div>
-                  </div>
-                  <span className="text-sm font-bold text-emerald-700 font-mono">
-                    +{formatAmount(yearlyReturnSaved)} / yr
-                  </span>
+                <div className="font-display text-4xl sm:text-5xl font-extrabold text-amber-700 my-4">
+                  {formatCurrency(results.totalBenefit)}
                 </div>
 
-                <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-100 text-purple-700">
-                      <TrendingUp className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-900">{t.roi_extra_rev}</p>
-                      <p className="text-[10px] text-slate-500 font-medium">+28% conversion rate bump</p>
-                    </div>
+                <div className="space-y-4 pt-4 border-t border-purple-200/80">
+                  <div className="flex justify-between items-start text-xs">
+                    <span className="text-slate-600 font-medium">{t.roi_return_saved}</span>
+                    <strong className="text-emerald-700 font-bold">{formatCurrency(results.returnRateSaved)}</strong>
                   </div>
-                  <span className="text-sm font-bold text-purple-700 font-mono">
-                    +{formatAmount(yearlyExtraRevenue)} / yr
-                  </span>
+
+                  <div className="flex justify-between items-start text-xs">
+                    <span className="text-slate-600 font-medium">{t.roi_extra_rev}</span>
+                    <strong className="text-purple-700 font-bold">{formatCurrency(results.conversionExtraRev)}</strong>
+                  </div>
                 </div>
               </div>
 
-              <button
-                onClick={onOpenRegisterModal}
-                className="w-full mt-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-purple-600 to-rose-600 text-white font-bold text-sm shadow-xl shadow-purple-600/20 hover:brightness-110 transition-all flex items-center justify-center gap-2"
-              >
-                <Zap className="w-4 h-4" />
-                {t.roi_cta}
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              <div className="mt-8 pt-6 border-t border-slate-200">
+                <MagneticButton
+                  onClick={onOpenRegisterModal}
+                  className="w-full py-4 bg-gradient-to-r from-amber-500 via-purple-600 to-rose-600 text-white font-bold text-xs shadow-xl hover:brightness-110 transition-all flex items-center justify-center gap-2"
+                >
+                  <TrendingUp className="w-4 h-4 text-amber-200" />
+                  {t.roi_cta}
+                </MagneticButton>
+              </div>
 
             </div>
-          </div>
 
-        </div>
+          </div>
+        </ScrollReveal>
 
       </div>
     </section>
