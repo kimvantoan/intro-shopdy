@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
 import {
@@ -19,13 +19,33 @@ import {
 export const DockNavbar = ({ onOpenDemoModal, onOpenRegisterModal }) => {
   const { lang, setLang, toggleLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      const currentScrollY = window.scrollY;
+
+      // Smart hide-on-scroll down, show-on-scroll up threshold
+      if (currentScrollY > 100) {
+        if (currentScrollY > lastScrollY.current + 8) {
+          // Scrolling Down -> Hide Header
+          setVisible(false);
+        } else if (currentScrollY < lastScrollY.current - 8) {
+          // Scrolling Up -> Reveal Header
+          setVisible(true);
+        }
+      } else {
+        // At top of page -> Always Visible
+        setVisible(true);
+      }
+
+      setScrolled(currentScrollY > 30);
+      lastScrollY.current = currentScrollY;
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -40,8 +60,11 @@ export const DockNavbar = ({ onOpenDemoModal, onOpenRegisterModal }) => {
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pt-4 pointer-events-none">
       <motion.nav
         initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        animate={{
+          y: visible ? 0 : -110,
+          opacity: visible ? 1 : 0
+        }}
+        transition={{ duration: 0.35, ease: 'easeInOut' }}
         className={`pointer-events-auto w-full max-w-6xl rounded-full transition-all duration-300 ${
           scrolled
             ? 'bg-white/95 border border-slate-200 py-2.5 px-6 shadow-xl shadow-slate-900/5 backdrop-blur-2xl'
