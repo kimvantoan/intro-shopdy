@@ -45,10 +45,10 @@ export const RegisterModal = ({ isOpen, onClose }) => {
 
           {isSuccess ? (
             <div className="text-center py-10 space-y-5">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 border border-emerald-300 text-emerald-600">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-slate-950 text-white shadow-lg">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h3 className="font-display text-2xl font-extrabold text-slate-900">
+              <h3 className="font-display text-2xl font-black text-slate-950">
                 {lang === 'VI' ? 'Khởi Tạo Platform Dùng Thử Thành Công!' : 'Platform Trial Provisioned!'}
               </h3>
               <p className="text-xs text-slate-600 max-w-xs mx-auto leading-relaxed font-medium">
@@ -61,28 +61,28 @@ export const RegisterModal = ({ isOpen, onClose }) => {
                   setIsSuccess(false);
                   onClose();
                 }}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-purple-600 to-rose-600 text-white font-bold text-xs shadow-lg"
+                className="w-full py-3.5 rounded-2xl bg-slate-950 text-white font-extrabold text-xs shadow-xl hover:bg-slate-800 transition-all"
               >
                 {lang === 'VI' ? 'Truy Cập Trang Quản Trị Console' : 'Access Shopdy Management Console'}
               </button>
             </div>
           ) : (
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-400/40 bg-amber-50 text-[11px] font-bold text-amber-800 mb-4">
-                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-300 bg-slate-100 text-[11px] font-bold text-slate-950 mb-4 shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-slate-950" />
                 {lang === 'VI' ? 'ĐĂNG KÝ DÙNG THỬ 14 NGÀY MIỄN PHÍ' : '14-DAY FULL PLATFORM TRIAL REGISTRATION'}
               </div>
 
-              <h3 className="font-display text-2xl font-extrabold text-slate-900 mb-2">
+              <h3 className="font-display text-2xl font-black text-slate-950 mb-2">
                 {lang === 'VI' ? 'Đăng Ký Khởi Tạo Shopdy OS' : 'Provision Your Shopdy Platform'}
               </h3>
-              <p className="text-xs text-slate-500 font-medium mb-6">
+              <p className="text-xs text-slate-600 font-medium mb-6">
                 {lang === 'VI' ? 'Không cần thẻ tín dụng. Môi trường quản trị của bạn sẽ tự động khởi tạo trong 60 giây.' : 'No credit card required. Your fashion management environment will be automatically provisioned in 60 seconds.'}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1">
+                  <label className="text-xs font-bold text-slate-800 block mb-1">
                     {lang === 'VI' ? 'Tên Thương Hiệu Thời Trang:' : 'Fashion Brand Name:'}
                   </label>
                   <input
@@ -91,12 +91,12 @@ export const RegisterModal = ({ isOpen, onClose }) => {
                     value={brandName}
                     onChange={(e) => setBrandName(e.target.value)}
                     placeholder="e.g. Maison Nòir, Vanguard Wear..."
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-semibold focus:outline-none focus:border-amber-500"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-950 text-xs font-semibold focus:outline-none focus:border-slate-950"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1">
+                  <label className="text-xs font-bold text-slate-800 block mb-1">
                     {lang === 'VI' ? 'Email Quản Trị Brand:' : 'Admin Work Email:'}
                   </label>
                   <input
@@ -105,12 +105,12 @@ export const RegisterModal = ({ isOpen, onClose }) => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="ceo@yourbrand.com"
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-semibold focus:outline-none focus:border-amber-500"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-950 text-xs font-semibold focus:outline-none focus:border-slate-950"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1">
+                  <label className="text-xs font-bold text-slate-800 block mb-1">
                     {lang === 'VI' ? 'Số Điện Thoại Hotline / WhatsApp:' : 'Brand Contact Phone / WhatsApp:'}
                   </label>
                   <input
@@ -119,18 +119,18 @@ export const RegisterModal = ({ isOpen, onClose }) => {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+1 (555) 019-2834"
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-semibold focus:outline-none focus:border-amber-500"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-950 text-xs font-semibold focus:outline-none focus:border-slate-950"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1">
+                  <label className="text-xs font-bold text-slate-800 block mb-1">
                     {lang === 'VI' ? 'Chọn Phong Cách Giao Diện Ban Đầu:' : 'Select Initial Visual Theme Architecture:'}
                   </label>
                   <select
                     value={theme}
                     onChange={(e) => setTheme(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-semibold focus:outline-none focus:border-amber-500"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-950 text-xs font-semibold focus:outline-none focus:border-slate-950"
                   >
                     <option value="Haute Couture Luxury">Haute Couture Luxury (High-end apparel)</option>
                     <option value="Streetwear Cyber">Streetwear Cyber (Gen-Z drops)</option>
@@ -140,9 +140,9 @@ export const RegisterModal = ({ isOpen, onClose }) => {
 
                 <button
                   type="submit"
-                  className="w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-purple-600 to-rose-600 text-white font-bold text-xs shadow-xl hover:brightness-110 transition-all flex items-center justify-center gap-2"
+                  className="w-full mt-4 py-3.5 rounded-2xl bg-slate-950 text-white font-extrabold text-xs shadow-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2"
                 >
-                  <Zap className="w-4 h-4 text-amber-200" />
+                  <Zap className="w-4 h-4 text-white" />
                   {lang === 'VI' ? 'Khởi Tạo Platform Ngay' : 'Launch Platform Trial Environment'}
                 </button>
               </form>
