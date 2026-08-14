@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 
 export const FashionCoreFeatures = () => {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('ALL');
 
   const allFeatures = [
@@ -187,7 +187,7 @@ export const FashionCoreFeatures = () => {
                     : 'text-slate-600 hover:text-slate-950'
                 }`}
               >
-                All System Modules (13)
+                {lang === 'VI' ? 'Tất Cả 13 Phân Hệ' : 'All System Modules (13)'}
               </button>
               <button
                 onClick={() => setActiveCategory('MANAGEMENT')}
@@ -197,7 +197,7 @@ export const FashionCoreFeatures = () => {
                     : 'text-slate-600 hover:text-slate-950'
                 }`}
               >
-                1. {t.cat_management}
+                1. {lang === 'VI' ? 'Quản Lý Kinh Doanh' : 'Business Management'}
               </button>
               <button
                 onClick={() => setActiveCategory('MARKETING')}
@@ -207,7 +207,7 @@ export const FashionCoreFeatures = () => {
                     : 'text-slate-600 hover:text-slate-950'
                 }`}
               >
-                2. {t.cat_marketing}
+                2. {lang === 'VI' ? 'Chiến Dịch Marketing' : 'Marketing Suite'}
               </button>
               <button
                 onClick={() => setActiveCategory('SYSTEM')}
@@ -217,7 +217,7 @@ export const FashionCoreFeatures = () => {
                     : 'text-slate-600 hover:text-slate-950'
                 }`}
               >
-                3. {t.cat_system}
+                3. {lang === 'VI' ? 'Quản Lý Hệ Thống' : 'System Manager'}
               </button>
             </div>
           </div>

@@ -62,7 +62,7 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                 }`}
               >
                 <LayoutDashboard className="w-4 h-4" />
-                1. Quản Lý Kinh Doanh (Management)
+                {lang === 'VI' ? '1. Quản Lý Kinh Doanh (Management)' : '1. Business Management'}
               </button>
 
               <button
@@ -74,7 +74,7 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                 }`}
               >
                 <TrendingUp className="w-4 h-4" />
-                2. Chiến Dịch Marketing
+                {lang === 'VI' ? '2. Chiến Dịch Marketing' : '2. Marketing Suite'}
               </button>
 
               <button
@@ -86,7 +86,7 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                 }`}
               >
                 <Settings className="w-4 h-4" />
-                3. Quản Lý Hệ Thống (System)
+                {lang === 'VI' ? '3. Quản Lý Hệ Thống (System)' : '3. System Manager'}
               </button>
             </div>
           </div>
@@ -111,44 +111,48 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                     <div>
                       <h3 className="text-xl font-bold text-slate-950 flex items-center gap-2">
                         <LayoutDashboard className="w-5 h-5 text-slate-950" />
-                        Phân Hệ Quản Lý Kinh Doanh (Shopdy Management Engine)
+                        {lang === 'VI' ? 'Phân Hệ Quản Lý Kinh Doanh (Shopdy Management Engine)' : 'Business Management Module (Shopdy Core Engine)'}
                       </h3>
-                      <p className="text-xs text-slate-500">Dashboard chỉ số tài chính, Đơn hàng, Kho sản phẩm, Cửa hàng online, Giảm giá &amp; Nhân sự Team</p>
+                      <p className="text-xs text-slate-500 font-medium">
+                        {lang === 'VI'
+                          ? 'Dashboard chỉ số tài chính, Đơn hàng, Kho sản phẩm, Cửa hàng online, Giảm giá & Nhân sự Team'
+                          : 'Financial Dashboard, Order Pipelines, Variant Product SKUs, Multi-Storefront Hub & Team Performance'}
+                      </p>
                     </div>
-                    <span className="text-xs font-bold text-white bg-slate-950 border border-slate-950 px-3 py-1 rounded-full flex items-center gap-1.5">
-                      <span className="h-2 w-2 rounded-full bg-white animate-ping" />
-                      Multi-Store &amp; Team Sync Active
+                    <span className="text-xs font-bold text-rose-700 bg-rose-50 border border-rose-200 px-3 py-1 rounded-full flex items-center gap-1.5">
+                      <span className="h-2 w-2 rounded-full bg-rose-600 animate-ping" />
+                      {lang === 'VI' ? 'Multi-Store & Team Sync Đang Chạy' : 'Multi-Store & Team Sync Active'}
                     </span>
                   </div>
 
                   {/* Dashboard Metrics Bar */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     <div className="p-4 rounded-xl border border-slate-200 bg-white shadow-sm">
-                      <p className="text-xs text-slate-500 font-semibold">Doanh Thu Tổng (Revenue)</p>
+                      <p className="text-xs text-slate-500 font-semibold">{lang === 'VI' ? 'Doanh Thu Tổng (Revenue)' : 'Total Revenue'}</p>
                       <p className="text-2xl font-black text-slate-950 font-display mt-1">$128,450 USD</p>
                       <span className="text-[10px] text-slate-700 font-bold flex items-center gap-1 mt-1">
-                        <TrendingUp className="w-3 h-3 text-slate-950" /> +32.8% tháng này
+                        <TrendingUp className="w-3 h-3 text-slate-950" /> {lang === 'VI' ? '+32.8% tháng này' : '+32.8% this month'}
                       </span>
                     </div>
 
                     <div className="p-4 rounded-xl border border-slate-200 bg-white shadow-sm">
-                      <p className="text-xs text-slate-500 font-semibold">Lợi Nhuận Thuần (Net Profit)</p>
+                      <p className="text-xs text-slate-500 font-semibold">{lang === 'VI' ? 'Lợi Nhuận Thuần (Net Profit)' : 'Net Profit'}</p>
                       <p className="text-2xl font-black text-slate-950 font-display mt-1">$42,180 USD</p>
                       <span className="text-[10px] text-slate-700 font-bold mt-1 inline-block">
-                        Biên lợi nhuận 32.8%
+                        {lang === 'VI' ? 'Biên lợi nhuận 32.8%' : '32.8% Profit Margin'}
                       </span>
                     </div>
 
                     <div className="p-4 rounded-xl border border-slate-200 bg-white shadow-sm">
-                      <p className="text-xs text-slate-500 font-semibold">Số Lượng Đơn Hàng (Orders)</p>
-                      <p className="text-2xl font-black text-slate-950 font-display mt-1">3,850 Đơn</p>
+                      <p className="text-xs text-slate-500 font-semibold">{lang === 'VI' ? 'Số Lượng Đơn Hàng (Orders)' : 'Orders Volume'}</p>
+                      <p className="text-2xl font-black text-slate-950 font-display mt-1">{lang === 'VI' ? '3,850 Đơn' : '3,850 Orders'}</p>
                       <span className="text-[10px] text-slate-600 font-medium mt-1 inline-block">
-                        Tỷ lệ chuyển đổi: 4.2%
+                        {lang === 'VI' ? 'Tỷ lệ chuyển đổi: 4.2%' : 'Conversion Rate: 4.2%'}
                       </span>
                     </div>
 
                     <div className="p-4 rounded-xl border border-slate-200 bg-white shadow-sm">
-                      <p className="text-xs text-slate-500 font-semibold">Chi Phí Ad Spend (Ads)</p>
+                      <p className="text-xs text-slate-500 font-semibold">{lang === 'VI' ? 'Chi Phí Ad Spend (Ads)' : 'Total Ad Spend'}</p>
                       <p className="text-2xl font-black text-slate-950 font-display mt-1">$9,400 USD</p>
                       <span className="text-[10px] text-slate-700 font-bold mt-1 inline-block">
                         ROAS: 13.6x ROI
@@ -204,9 +208,13 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                     <div>
                       <h3 className="text-xl font-bold text-slate-950 flex items-center gap-2">
                         <TrendingUp className="w-5 h-5 text-slate-950" />
-                        Phân Hệ Marketing &amp; Tối Ưu Quảng Cáo (Marketing Suite)
+                        {lang === 'VI' ? 'Phân Hệ Marketing & Tối Ưu Quảng Cáo (Marketing Suite)' : 'Marketing Suite & Campaign Optimization'}
                       </h3>
-                      <p className="text-xs text-slate-500">Ads Manager, Creatives Studio, Email Marketing tự động &amp; Sync Accounts liên kết</p>
+                      <p className="text-xs text-slate-500 font-medium">
+                        {lang === 'VI'
+                          ? 'Ads Manager, Creatives Studio, Email Marketing tự động & Sync Accounts liên kết'
+                          : 'Omnichannel Ads Manager, Creatives Studio, Automated Email Drip & Linked Sync Accounts'}
+                      </p>
                     </div>
                     <span className="text-xs font-bold text-white bg-slate-950 border border-slate-950 px-3 py-1 rounded-full">
                       Meta, TikTok &amp; Google Ads Linked
@@ -220,7 +228,9 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                         <h4 className="text-xs font-bold text-slate-950">Ads Manager &amp; ROAS Tracking</h4>
                       </div>
                       <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                        Quản lý ngân sách quảng cáo tập trung, theo dõi chỉ số chi phí Ad Spend, CPC, CTR và doanh thu ROAS trực tiếp từ Facebook, Google &amp; TikTok.
+                        {lang === 'VI'
+                          ? 'Quản lý ngân sách quảng cáo tập trung, theo dõi chỉ số chi phí Ad Spend, CPC, CTR và doanh thu ROAS trực tiếp từ Facebook, Google & TikTok.'
+                          : 'Centralized ad budget management, monitoring Ad Spend, CPC, CTR, and direct ROAS revenue attribution across Meta, Google & TikTok.'}
                       </p>
                     </div>
 
@@ -230,7 +240,9 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                         <h4 className="text-xs font-bold text-slate-950">Creatives Content Studio</h4>
                       </div>
                       <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                        Lưu trữ và tổ chức kho hình ảnh, video teaser, bài viết ad copy chuyển đổi cao cho các chiến dịch marketing.
+                        {lang === 'VI'
+                          ? 'Lưu trữ và tổ chức kho hình ảnh, video teaser, bài viết ad copy chuyển đổi cao cho các chiến dịch marketing.'
+                          : 'Organize high-converting promotional photos, video teasers, and ad copy variants for seamless creative campaign execution.'}
                       </p>
                     </div>
 
@@ -240,7 +252,9 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                         <h4 className="text-xs font-bold text-slate-950">Automated Email Marketing</h4>
                       </div>
                       <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                        Tự động hóa gửi email chăm sóc khách hàng, phục hồi giỏ hàng bỏ quên và gửi newsletter khuyến mãi theo nhóm khách hàng phân loại.
+                        {lang === 'VI'
+                          ? 'Tự động hóa gửi email chăm sóc khách hàng, phục hồi giỏ hàng bỏ quên và gửi newsletter khuyến mãi theo nhóm khách hàng phân loại.'
+                          : 'Broadcast automated customer nurture emails, recover abandoned carts, and send promotional newsletters to segmented subscriber lists.'}
                       </p>
                     </div>
 
@@ -250,7 +264,9 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                         <h4 className="text-xs font-bold text-slate-950">Sync Accounts Link</h4>
                       </div>
                       <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                        Đồng bộ 1-click ủy quyền tài khoản quảng cáo, Meta Commerce, TikTok Shop &amp; kênh truyền thông mạng xã hội.
+                        {lang === 'VI'
+                          ? 'Đồng bộ 1-click ủy quyền tài khoản quảng cáo, Meta Commerce, TikTok Shop & kênh truyền thông mạng xã hội.'
+                          : 'One-click authorization and sync for Meta Commerce, TikTok Shop, Google Merchant, and linked social media ad accounts.'}
                       </p>
                     </div>
                   </div>
@@ -271,9 +287,13 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                     <div>
                       <h3 className="text-xl font-bold text-slate-950 flex items-center gap-2">
                         <Settings className="w-5 h-5 text-slate-950" />
-                        Phân Hệ Quản Lý Hệ Thống (System Manager)
+                        {lang === 'VI' ? 'Phân Hệ Quản Lý Hệ Thống (System Manager)' : 'System Manager & Core Settings'}
                       </h3>
-                      <p className="text-xs text-slate-500">Cấu hình chung System Settings &amp; Cổng thanh toán xử lý giao dịch Payment Gateways</p>
+                      <p className="text-xs text-slate-500 font-medium">
+                        {lang === 'VI'
+                          ? 'Cấu hình chung System Settings & Cổng thanh toán xử lý giao dịch Payment Gateways'
+                          : 'Global System Settings, custom domains, tax rules & Payment Gateways transaction processing'}
+                      </p>
                     </div>
                     <span className="text-xs font-bold text-white bg-slate-950 border border-slate-950 px-3 py-1 rounded-full">
                       Enterprise SLA 99.99%
@@ -288,13 +308,13 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                         </div>
                         <div>
                           <h4 className="text-sm font-bold text-slate-950">System Settings</h4>
-                          <p className="text-xs text-slate-500">Cài đặt chung cho hệ thống</p>
+                          <p className="text-xs text-slate-500">{lang === 'VI' ? 'Cài đặt chung cho hệ thống' : 'Global system configurations'}</p>
                         </div>
                       </div>
                       <ul className="space-y-2 text-xs text-slate-700 font-medium pt-2 border-t border-slate-100">
-                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> Tên miền tùy chỉnh (Custom Domain SSL)</li>
-                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> Cấu hình đa tiền tệ (Multi-currency USD/VND)</li>
-                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> Quy tắc tính thuế &amp; Phí vận chuyển linh hoạt</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> {lang === 'VI' ? 'Tên miền tùy chỉnh (Custom Domain SSL)' : 'Custom domain mapping & SSL certificates'}</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> {lang === 'VI' ? 'Cấu hình đa tiền tệ (Multi-currency USD/VND)' : 'Multi-currency localization (USD / VND)'}</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> {lang === 'VI' ? 'Quy tắc tính thuế & Phí vận chuyển linh hoạt' : 'Automated tax calculations & shipping rates'}</li>
                       </ul>
                     </div>
 
@@ -305,13 +325,13 @@ export const InteractiveStorefrontDemo = ({ onOpenDemoModal }) => {
                         </div>
                         <div>
                           <h4 className="text-sm font-bold text-slate-950">Payment Gateways</h4>
-                          <p className="text-xs text-slate-500">Cổng thanh toán xử lý giao dịch</p>
+                          <p className="text-xs text-slate-500">{lang === 'VI' ? 'Cổng thanh toán xử lý giao dịch' : 'Payment gateway transaction pipeline'}</p>
                         </div>
                       </div>
                       <ul className="space-y-2 text-xs text-slate-700 font-medium pt-2 border-t border-slate-100">
-                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> Tích hợp VietQR, MoMo, ZaloPay tự động</li>
-                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> Thanh toán Stripe, Apple Pay &amp; Thẻ quốc tế</li>
-                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> Quản lý thanh toán COD &amp; Đối soát doanh thu</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> {lang === 'VI' ? 'Tích hợp VietQR, MoMo, ZaloPay tự động' : 'Instant VietQR, MoMo, ZaloPay integration'}</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> {lang === 'VI' ? 'Thanh toán Stripe, Apple Pay & Thẻ quốc tế' : 'Stripe, Apple Pay & credit card processing'}</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-slate-950" /> {lang === 'VI' ? 'Quản lý thanh toán COD & Đối soát doanh thu' : 'Cash on Delivery (COD) & automated payout reconciliation'}</li>
                       </ul>
                     </div>
                   </div>
