@@ -17,7 +17,7 @@ export const BrandScrollerSection = () => {
   ];
 
   return (
-    <section className="relative py-12 border-y border-slate-200/80 bg-white overflow-hidden">
+    <section className="relative py-12 border-y border-slate-200 bg-slate-50 overflow-hidden">
       <ScrollReveal direction="up" duration={0.6}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center">
           <p className="text-xs font-bold text-slate-500 uppercase tracking-widest font-mono">
@@ -31,7 +31,7 @@ export const BrandScrollerSection = () => {
             {BRANDS.concat(BRANDS).map((b, i) => (
               <span
                 key={i}
-                className="text-lg sm:text-2xl font-black font-display tracking-wider text-slate-400 hover:text-purple-700 transition-colors cursor-pointer select-none"
+                className="text-lg sm:text-2xl font-black font-display tracking-wider text-slate-400 hover:text-slate-950 transition-colors cursor-pointer select-none"
               >
                 {b.logo}
               </span>
@@ -41,7 +41,7 @@ export const BrandScrollerSection = () => {
             {BRANDS.concat(BRANDS).map((b, i) => (
               <span
                 key={i}
-                className="text-lg sm:text-2xl font-black font-display tracking-wider text-slate-900"
+                className="text-lg sm:text-2xl font-black font-display tracking-wider text-slate-950"
               >
                 {b.logo}
               </span>

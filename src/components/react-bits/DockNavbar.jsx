@@ -44,22 +44,28 @@ export const DockNavbar = ({ onOpenDemoModal, onOpenRegisterModal }) => {
         transition={{ duration: 0.5 }}
         className={`pointer-events-auto w-full max-w-6xl rounded-full transition-all duration-300 ${
           scrolled
-            ? 'bg-white/95 border border-slate-200/90 py-2.5 px-6 shadow-xl shadow-slate-900/5 backdrop-blur-2xl'
-            : 'bg-white/90 border border-slate-200/80 py-3 px-6 shadow-lg shadow-slate-900/5 backdrop-blur-xl'
+            ? 'bg-white/95 border border-slate-200 py-2.5 px-6 shadow-xl shadow-slate-900/5 backdrop-blur-2xl'
+            : 'bg-white/90 border border-slate-200/90 py-3 px-6 shadow-lg shadow-slate-900/5 backdrop-blur-xl'
         }`}
       >
         <div className="flex items-center justify-between">
           
           {/* Logo & Brand */}
           <a href="#" className="flex items-center gap-2.5 group">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-950 text-amber-300 shadow-md group-hover:scale-105 transition-transform">
+            <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-slate-950 text-white font-black shadow-md group-hover:scale-105 transition-transform">
               <LayoutDashboard className="h-4.5 w-4.5" />
             </div>
             <div className="flex flex-col">
-              <span className="font-display text-xl font-black tracking-tight bg-gradient-to-r from-slate-950 via-purple-950 to-amber-700 bg-clip-text text-transparent leading-none">
-                SHOPDY
-              </span>
-              <span className="text-[9px] tracking-widest text-purple-600 font-extrabold uppercase mt-0.5 font-mono">
+              <div className="flex items-center gap-1.5">
+                <span className="font-display text-xl font-black tracking-tight text-slate-950 leading-none">
+                  SHOPDY
+                </span>
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600" />
+                </span>
+              </div>
+              <span className="text-[9px] tracking-widest text-slate-500 font-bold uppercase mt-0.5 font-mono">
                 Fashion OS
               </span>
             </div>
@@ -73,9 +79,9 @@ export const DockNavbar = ({ onOpenDemoModal, onOpenRegisterModal }) => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-purple-700 transition-colors whitespace-nowrap"
+                  className="flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-slate-950 transition-colors whitespace-nowrap"
                 >
-                  <Icon className="w-3.5 h-3.5 text-purple-600" />
+                  <Icon className="w-3.5 h-3.5 text-slate-500" />
                   <span>{link.label}</span>
                 </a>
               );
@@ -91,8 +97,8 @@ export const DockNavbar = ({ onOpenDemoModal, onOpenRegisterModal }) => {
                 onClick={() => setLang('EN')}
                 className={`flex items-center gap-1 px-2.5 py-1 rounded-full transition-all ${
                   lang === 'EN'
-                    ? 'bg-white text-purple-950 shadow-sm'
-                    : 'text-slate-500 hover:text-slate-900'
+                    ? 'bg-white text-slate-950 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-950'
                 }`}
               >
                 <span>🇺🇸</span>
@@ -102,8 +108,8 @@ export const DockNavbar = ({ onOpenDemoModal, onOpenRegisterModal }) => {
                 onClick={() => setLang('VI')}
                 className={`flex items-center gap-1 px-2.5 py-1 rounded-full transition-all ${
                   lang === 'VI'
-                    ? 'bg-white text-purple-950 shadow-sm'
-                    : 'text-slate-500 hover:text-slate-900'
+                    ? 'bg-white text-slate-950 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-950'
                 }`}
               >
                 <span>🇻🇳</span>
@@ -111,21 +117,21 @@ export const DockNavbar = ({ onOpenDemoModal, onOpenRegisterModal }) => {
               </button>
             </div>
 
-            {/* Console Demo Button */}
+            {/* Console Demo Button with Red Live Indicator */}
             <button
               onClick={onOpenDemoModal}
-              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-slate-700 hover:text-purple-700 transition-colors rounded-full border border-slate-200 bg-slate-50 hover:bg-white whitespace-nowrap"
+              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-slate-700 hover:text-slate-950 transition-colors rounded-full border border-rose-200 bg-rose-50 hover:bg-rose-100/80 whitespace-nowrap"
             >
-              <Play className="w-3 h-3 text-amber-600 fill-amber-600" />
-              <span>{lang === 'VI' ? 'Xem Demo' : 'Live Demo'}</span>
+              <Play className="w-3 h-3 text-rose-600 fill-rose-600" />
+              <span className="text-rose-700">{lang === 'VI' ? 'Live Demo' : 'Live Demo'}</span>
             </button>
 
             {/* Primary Action Button */}
             <button
               onClick={onOpenRegisterModal}
-              className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-500 via-purple-600 to-rose-600 text-white font-bold text-xs rounded-full shadow-md shadow-purple-600/20 hover:brightness-110 transition-all whitespace-nowrap"
+              className="flex items-center gap-1.5 px-4 py-2 bg-slate-950 text-white font-extrabold text-xs rounded-full shadow-md hover:bg-slate-800 transition-all whitespace-nowrap"
             >
-              <Zap className="w-3.5 h-3.5 text-amber-200" />
+              <Zap className="w-3.5 h-3.5 text-white" />
               <span>{lang === 'VI' ? 'Dùng Thử 14 Ngày' : 'Start Free Trial'}</span>
             </button>
           </div>
@@ -134,14 +140,14 @@ export const DockNavbar = ({ onOpenDemoModal, onOpenRegisterModal }) => {
           <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={toggleLanguage}
-              className="px-2 py-1 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-bold text-slate-800"
+              className="px-2 py-1 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-bold text-slate-900"
             >
               {lang === 'EN' ? '🇺🇸 EN' : '🇻🇳 VI'}
             </button>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1.5 text-slate-700 hover:text-slate-950 rounded-full bg-slate-100 border border-slate-200"
+              className="p-1.5 text-slate-900 rounded-full bg-slate-100 border border-slate-200"
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
@@ -166,10 +172,10 @@ export const DockNavbar = ({ onOpenDemoModal, onOpenRegisterModal }) => {
                     key={link.label}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 text-xs font-bold text-slate-800 hover:bg-purple-50 hover:text-purple-950 transition-colors"
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 text-xs font-bold text-slate-900 hover:bg-slate-100 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
-                      <Icon className="w-4 h-4 text-purple-600" />
+                      <Icon className="w-4 h-4 text-slate-500" />
                       <span>{link.label}</span>
                     </div>
                     <ChevronRight className="w-4 h-4 text-slate-400" />
@@ -182,19 +188,19 @@ export const DockNavbar = ({ onOpenDemoModal, onOpenRegisterModal }) => {
                     setMobileMenuOpen(false);
                     onOpenDemoModal();
                   }}
-                  className="w-full py-2.5 px-4 rounded-xl border border-amber-500/40 text-amber-800 bg-amber-50 text-xs font-bold flex items-center justify-center gap-2"
+                  className="w-full py-2.5 px-4 rounded-xl border border-rose-200 text-rose-700 bg-rose-50 text-xs font-bold flex items-center justify-center gap-2"
                 >
-                  <Play className="w-3.5 h-3.5 fill-amber-700" />
-                  <span>{lang === 'VI' ? 'Xem Demo Admin' : 'Explore Live Demo'}</span>
+                  <Play className="w-3.5 h-3.5 fill-rose-600 text-rose-600" />
+                  <span>{lang === 'VI' ? 'Live Demo Admin' : 'Explore Live Demo'}</span>
                 </button>
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
                     onOpenRegisterModal();
                   }}
-                  className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-purple-600 to-rose-600 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm"
+                  className="w-full py-2.5 px-4 rounded-xl bg-slate-950 text-white text-xs font-extrabold flex items-center justify-center gap-2 shadow-sm"
                 >
-                  <Zap className="w-3.5 h-3.5 text-amber-200" />
+                  <Zap className="w-3.5 h-3.5 text-white" />
                   <span>{lang === 'VI' ? 'Dùng Thử 14 Ngày' : 'Start 14-Day Free Trial'}</span>
                 </button>
               </div>

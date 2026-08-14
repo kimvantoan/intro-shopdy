@@ -5,6 +5,7 @@ import { SplitText } from '../react-bits/SplitText';
 import { BlurText } from '../react-bits/BlurText';
 import { MagneticButton } from '../react-bits/MagneticButton';
 import { CountUp } from '../react-bits/CountUp';
+import { ScrollReveal } from '../react-bits/ScrollReveal';
 import {
   Sparkles,
   Zap,
@@ -52,10 +53,9 @@ export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
   };
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-gradient-to-b from-purple-50/40 via-amber-50/20 to-transparent">
+    <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-white">
       {/* Background ambient lighting Shaders */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[520px] bg-gradient-to-tr from-purple-300/25 via-rose-200/20 to-amber-200/25 blur-[140px] pointer-events-none rounded-full" />
-      <div className="absolute top-20 right-10 w-96 h-96 bg-purple-200/20 blur-[130px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[520px] bg-slate-100/60 blur-[150px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -68,13 +68,13 @@ export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-300 bg-white/80 backdrop-blur-xl mb-6 shadow-md shadow-purple-900/5"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-slate-50 backdrop-blur-xl mb-6 shadow-sm"
             >
-              <Sparkles className="w-4 h-4 text-amber-600 animate-pulse" />
-              <span className="text-xs font-bold tracking-wide gold-shiny-text uppercase">
+              <Sparkles className="w-4 h-4 text-slate-900 animate-pulse" />
+              <span className="text-xs font-bold tracking-wide bw-shiny-text uppercase">
                 ✦ {t.hero_badge}
               </span>
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
+              <span className="h-1.5 w-1.5 rounded-full bg-rose-600 animate-ping" />
             </motion.div>
 
             {/* SplitText Headline */}
@@ -83,7 +83,7 @@ export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
                 key={t.hero_title}
                 text={t.hero_title}
                 as="h1"
-                className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1]"
+                className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 leading-[1.1]"
                 stagger={0.03}
               />
             </div>
@@ -105,19 +105,19 @@ export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
             >
               <MagneticButton
                 onClick={onOpenRegisterModal}
-                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-500 via-purple-600 to-rose-600 text-white font-bold text-sm shadow-xl shadow-purple-600/20 hover:shadow-purple-500/40"
+                className="w-full sm:w-auto px-8 py-4 bg-slate-950 text-white font-black text-sm hover:bg-slate-800 shadow-xl transition-all"
               >
-                <Zap className="w-4 h-4 text-amber-200" />
+                <Zap className="w-4 h-4 text-white" />
                 {t.hero_cta_trial}
                 <ArrowRight className="w-4 h-4 ml-1" />
               </MagneticButton>
 
               <button
                 onClick={onOpenDemoModal}
-                className="w-full sm:w-auto px-6 py-4 rounded-full border border-slate-300 bg-white/90 hover:bg-slate-50 text-slate-800 font-bold text-sm flex items-center justify-center gap-2 shadow-md backdrop-blur-xl transition-all duration-300 hover:border-purple-400"
+                className="w-full sm:w-auto px-6 py-4 rounded-full border border-rose-200 bg-rose-50 hover:bg-rose-100/80 text-rose-700 font-bold text-sm flex items-center justify-center gap-2 shadow-sm backdrop-blur-xl transition-all duration-300"
               >
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-500/20 text-amber-700">
-                  <Play className="w-3.5 h-3.5 fill-amber-700" />
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-rose-600 text-white">
+                  <Play className="w-3.5 h-3.5 fill-white text-white" />
                 </div>
                 {t.hero_cta_demo}
               </button>
@@ -125,14 +125,14 @@ export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
 
             {/* Trust Bullet Points */}
             <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs font-semibold text-slate-600">
-              <span className="flex items-center gap-1.5 text-slate-700">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> {t.hero_check1}
+              <span className="flex items-center gap-1.5 text-slate-900">
+                <CheckCircle2 className="w-4 h-4 text-slate-900" /> {t.hero_check1}
               </span>
-              <span className="flex items-center gap-1.5 text-slate-700">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> {t.hero_check2}
+              <span className="flex items-center gap-1.5 text-slate-900">
+                <CheckCircle2 className="w-4 h-4 text-slate-900" /> {t.hero_check2}
               </span>
-              <span className="flex items-center gap-1.5 text-slate-700">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> {t.hero_check3}
+              <span className="flex items-center gap-1.5 text-slate-900">
+                <CheckCircle2 className="w-4 h-4 text-slate-900" /> {t.hero_check3}
               </span>
             </div>
           </div>
@@ -145,26 +145,27 @@ export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative mx-auto max-w-md lg:max-w-none"
             >
-              <div className="relative rounded-3xl border border-slate-200/90 bg-white/90 p-5 shadow-2xl shadow-purple-900/10 backdrop-blur-2xl">
+              <div className="relative rounded-3xl border border-slate-200 bg-white p-5 shadow-xl backdrop-blur-2xl">
                 
-                <div className="absolute -top-4 -right-4 z-20 flex items-center gap-2 rounded-2xl border border-amber-500/40 bg-white px-4 py-2 shadow-xl backdrop-blur-xl">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-amber-500 to-purple-600 text-white font-bold">
+                <div className="absolute -top-4 -right-4 z-20 flex items-center gap-2 rounded-2xl border border-slate-300 bg-slate-50 px-4 py-2 shadow-lg">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-slate-950 text-white font-bold">
                     <Cpu className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase font-bold text-amber-700 tracking-wider">Platform Core</p>
-                    <p className="text-xs font-extrabold text-slate-900">99.99% Enterprise SLA</p>
+                    <p className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Platform Core</p>
+                    <p className="text-xs font-extrabold text-slate-950">99.99% Enterprise SLA</p>
                   </div>
                 </div>
 
                 <div className="border-b border-slate-200 pb-4 mb-4 flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <LayoutDashboard className="w-4 h-4 text-purple-600" />
-                    <span className="text-xs font-bold text-slate-900 font-mono">
+                    <LayoutDashboard className="w-4 h-4 text-slate-900" />
+                    <span className="text-xs font-bold text-slate-950 font-mono">
                       {t.hero_core_title}
                     </span>
                   </div>
-                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-300 px-2.5 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold text-rose-700 bg-rose-50 border border-rose-200 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-rose-600 animate-ping" />
                     {t.hero_core_status}
                   </span>
                 </div>
@@ -177,8 +178,8 @@ export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
                         onClick={() => setActiveModule(key)}
                         className={`p-2.5 rounded-xl text-[11px] font-bold transition-all border text-center ${
                           activeModule === key
-                            ? 'border-purple-400 bg-purple-100 text-purple-900 shadow-sm'
-                            : 'border-slate-200 bg-slate-50 text-slate-600 hover:text-slate-900'
+                            ? 'border-slate-950 bg-slate-950 text-white shadow-sm'
+                            : 'border-slate-200 bg-slate-50 text-slate-600 hover:text-slate-950'
                         }`}
                       >
                         {modules[key].name}
@@ -186,45 +187,45 @@ export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
                     ))}
                   </div>
 
-                  <div className="p-4 rounded-2xl border border-slate-200 bg-slate-50/80 space-y-3">
+                  <div className="p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-extrabold text-slate-900">
+                      <span className="text-xs font-extrabold text-slate-950">
                         {modules[activeModule].name}
                       </span>
-                      <span className="text-[10px] font-bold text-purple-700 bg-purple-100 border border-purple-300 px-2 py-0.5 rounded">
+                      <span className="text-[10px] font-bold text-rose-700 bg-rose-100 border border-rose-200 px-2 py-0.5 rounded">
                         {modules[activeModule].tag}
                       </span>
                     </div>
 
-                    <p className="text-xl font-extrabold text-amber-700 font-display">
+                    <p className="text-xl font-extrabold text-slate-950 font-display">
                       {modules[activeModule].status}
                     </p>
-                    <p className="text-xs text-slate-600">
+                    <p className="text-xs text-slate-600 font-medium">
                       {modules[activeModule].detail}
                     </p>
 
                     <button
                       onClick={onOpenDemoModal}
-                      className="w-full mt-2 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-amber-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md hover:brightness-110 transition-all"
+                      className="w-full mt-2 py-2.5 rounded-xl bg-slate-950 text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-md hover:bg-slate-800 transition-all"
                     >
-                      <BarChart3 className="w-3.5 h-3.5" />
+                      <BarChart3 className="w-3.5 h-3.5 text-white" />
                       Test Console Diagnostics
                     </button>
                   </div>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-slate-50/80 p-3 backdrop-blur-md">
+                <div className="mt-4 flex items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-3">
                   <div className="flex items-center gap-2">
                     <div className="flex -space-x-2">
                       <img className="h-7 w-7 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200" alt="Founder" />
                       <img className="h-7 w-7 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200" alt="CTO" />
                       <img className="h-7 w-7 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200" alt="VP Ops" />
                     </div>
-                    <p className="text-xs font-bold text-slate-700">
+                    <p className="text-xs font-bold text-slate-800">
                       {t.hero_core_trust}
                     </p>
                   </div>
-                  <span className="text-xs font-bold text-amber-800 bg-amber-50 border border-amber-300 px-2.5 py-1 rounded-full">
+                  <span className="text-xs font-bold text-slate-950 bg-slate-200 border border-slate-300 px-2.5 py-1 rounded-full">
                     {t.hero_core_saas}
                   </span>
                 </div>
@@ -234,35 +235,37 @@ export const HeroSection = ({ onOpenDemoModal, onOpenRegisterModal }) => {
         </div>
 
         {/* Dynamic Metric Stat Bar */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 p-6 rounded-3xl border border-slate-200/80 bg-white/80 shadow-xl backdrop-blur-xl">
-          <div className="text-center p-4 border-r border-slate-200/80 last:border-0">
-            <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display">
-              <CountUp end={99.99} decimals={2} suffix="%" />
-            </p>
-            <p className="mt-1 text-xs text-slate-600 font-semibold">{t.metric_uptime}</p>
-          </div>
+        <ScrollReveal direction="up" delay={0.4} duration={0.6}>
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 p-6 rounded-3xl border border-slate-200 bg-white shadow-xl backdrop-blur-xl">
+            <div className="text-center p-4 border-r border-slate-200 last:border-0">
+              <p className="text-3xl sm:text-4xl font-black text-slate-950 font-display">
+                <CountUp end={99.99} decimals={2} suffix="%" />
+              </p>
+              <p className="mt-1 text-xs text-slate-600 font-semibold">{t.metric_uptime}</p>
+            </div>
 
-          <div className="text-center p-4 border-r border-slate-200/80 last:border-0">
-            <p className="text-3xl sm:text-4xl font-extrabold text-amber-700 font-display">
-              <CountUp end={32.8} decimals={1} prefix="+" suffix="%" />
-            </p>
-            <p className="mt-1 text-xs text-slate-600 font-semibold">{t.metric_return}</p>
-          </div>
+            <div className="text-center p-4 border-r border-slate-200 last:border-0">
+              <p className="text-3xl sm:text-4xl font-black text-slate-950 font-display">
+                <CountUp end={32.8} decimals={1} prefix="+" suffix="%" />
+              </p>
+              <p className="mt-1 text-xs text-slate-600 font-semibold">{t.metric_return}</p>
+            </div>
 
-          <div className="text-center p-4 border-r border-slate-200/80 last:border-0">
-            <p className="text-3xl sm:text-4xl font-extrabold text-purple-700 font-display">
-              <CountUp end={13.6} decimals={1} suffix="x" />
-            </p>
-            <p className="mt-1 text-xs text-slate-600 font-semibold">{t.metric_conversion}</p>
-          </div>
+            <div className="text-center p-4 border-r border-slate-200 last:border-0">
+              <p className="text-3xl sm:text-4xl font-black text-slate-950 font-display">
+                <CountUp end={13.6} decimals={1} suffix="x" />
+              </p>
+              <p className="mt-1 text-xs text-slate-600 font-semibold">{t.metric_conversion}</p>
+            </div>
 
-          <div className="text-center p-4">
-            <p className="text-3xl sm:text-4xl font-extrabold text-emerald-700 font-display">
-              <CountUp end={150} suffix="K+" />
-            </p>
-            <p className="mt-1 text-xs text-slate-600 font-semibold">{t.metric_surge}</p>
+            <div className="text-center p-4">
+              <p className="text-3xl sm:text-4xl font-black text-slate-950 font-display">
+                <CountUp end={150} suffix="K+" />
+              </p>
+              <p className="mt-1 text-xs text-slate-600 font-semibold">{t.metric_surge}</p>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
       </div>
     </section>
